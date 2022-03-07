@@ -1,4 +1,5 @@
 import requests
+import os
 from twilio.rest import Client
 
 STOCK_NAME = "TSLA"
@@ -7,10 +8,10 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
-STOCK_API_KEY = "R0EZOKB235TBYFRJ"
-NEWS_API_KEY = "215022137f134b058506efd0a561b5e1"
+STOCK_API_KEY = os.environ.get("STK_API_KEY")
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
 TWILIO_SID = "ACc30d7728646d3bdf75d47d92b3a55ace"
-TWILIO_AUTH_TOKEN = "d32a872e28890458528c21458110e393"
+TWILIO_AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
 
 stock_params = {
     "function": "TIME_SERIES_DAILY",
@@ -52,6 +53,6 @@ if abs(diff_percent) >= 5:
         message = client.messages.create(
             body=article,
             from_="+12344053502",
-            to="+82-010-9473-1406"
+            to="+82-010-xxxx-xxxx"
         )
 
